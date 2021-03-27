@@ -23,7 +23,7 @@ class Requests {
 // TODO: Push into .env
 const host =
     process.env.NODE_ENV === 'production'
-        ? 'https://eawagidentifier.vercel.app'
+        ? 'https://sludge-snap-web-app.vercel.app'
         : 'http://localhost:3000';
 
 export default new Requests({
