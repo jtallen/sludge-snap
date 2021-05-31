@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.animate-spin-slow {
+    animation: spin 2s linear infinite;
+}
+
+.font-fancy {
+    font-family: 'Permanent Marker', cursive;
+}

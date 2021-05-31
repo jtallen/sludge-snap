@@ -1,0 +1,4 @@
+density,oder_before,foam_height,ph,ec,ts_%,vs_%ts,cod,nh4,TOC,TKN,bulk_H,bulk_S,bulk_V,super_H,super_S,super_V,bulk_color,contrast,dissimilarity,homogeneity,ASM,energy,correlation,origin_simplified,oss_type_simplified,toilet_type_simplified,water_connection
+1.0405,Fresh,5,8.01,1.944,0.21,34.76,25.6,0.12,12.62032086,4.564,44,43,67,45,7,86,fresh,1.079354435,0.641172657,0.716523963,0.049829486,0.223225192,0.899346963,Household,Pit latrine,dry,No
+1.0405,Middle,5,8.01,1.944,0.21,34.76,25.6,0.12,12.62032086,4.564,44,43,67,45,7,86,middle,1.079354435,0.641172657,0.716523963,0.049829486,0.223225192,0.899346963,Non-household,Septic tank,wet,Yes
+1.0405,Stabilized,5,8.01,1.944,0.21,34.76,25.6,0.12,12.62032086,4.564,44,43,67,45,7,86,stabilized,1.079354435,0.641172657,0.716523963,0.049829486,0.223225192,0.899346963,Non-household,Septic tank,wet,Yes

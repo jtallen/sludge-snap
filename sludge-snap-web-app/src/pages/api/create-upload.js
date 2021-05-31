@@ -1,32 +1,77 @@
 const { hasuraRequest } = require('../../util/hasura');
 
 /*
-    This workaround is necessary because of how Hasura handles empty GQL field values
-    that are non-nullable + default at the DB level: Instead of just using the default
-    value, as expected, the API throws an error.
-    TODO: Figure out a cleaner way to do this.
-*/
+ * This function adds the users input to the uploads table of the database
+ * Using GraphQL format
+ *
+ */
+
 const GQL_DEFINITIONS = {
     title: 'String!',
     ph: 'numeric!',
     notes: 'String = ""',
     image: 'String!',
     user_email: 'String!',
+    ec: 'numeric!',
+    foam_height: 'numeric = 0',
+    oss_type_simplified: 'String = ""',
+    toilet_type_simplified: 'String = ""',
+    water_connection: 'String = ""',
+    origin_simplified: 'String = ""',
+    oder_before: 'String = ""',
+    bulk_color: 'String = ""',
 };
 
+export const UPLOAD_GQL_DEFINITION = `
+    createdAt: created_at
+    id
+    image
+    notes
+    title
+    ph
+    userEmail: user_email
+    ec
+    foam_height
+    oss_type_simplified
+    toilet_type_simplified
+    water_connection
+    origin_simplified
+    oder_before
+    bulk_color
+`;
+
 async function createUpload(req, res) {
-    const { title, pH, notes, image, userEmail } = JSON.parse(req.body);
-    console.log({ title, pH, notes, image, userEmail });
+    const {
+        title,
+        ph,
+        notes,
+        image,
+        userEmail,
+        ec,
+        foam_height,
+        oss_type_simplified,
+        toilet_type_simplified,
+        water_connection,
+        origin_simplified,
+        oder_before,
+        bulk_color,
+    } = JSON.parse(req.body);
 
     const variables = {
         title,
-        ph: pH,
+        ph,
+        notes,
         image,
         user_email: userEmail,
+        ec,
+        foam_height,
+        oss_type_simplified,
+        toilet_type_simplified,
+        water_connection,
+        origin_simplified,
+        oder_before,
+        bulk_color,
     };
-    if (notes) {
-        variables.notes = notes;
-    }
 
     const query = buildQuery(variables);
 
@@ -35,7 +80,7 @@ async function createUpload(req, res) {
         variables,
     });
 
-    res.status(200).json({ data });
+    res.status(200).json({ upload: data.insert_uploads_one });
 }
 
 function buildQuery(variables) {
@@ -52,12 +97,7 @@ function buildQuery(variables) {
     return `
         mutation CreateUpload(${typeDef}) {
             insert_uploads_one(object: {${inputDef}}) {
-                createdAt: created_at
-                id
-                image
-                notes
-                title
-                pH: ph
+                ${UPLOAD_GQL_DEFINITION}
             }
         }
     `;
@@ -65,3 +105,11 @@ function buildQuery(variables) {
 
 exports.createUpload = createUpload;
 export default createUpload;
+
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '20mb',
+        },
+    },
+};
