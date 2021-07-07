@@ -33,12 +33,12 @@ def process(file):
         colour.io.read_image(path, method='Imageio'), function='sRGB')
 
     # color corrects cctf decoded image
-    image = numpy.clip(images.ColorCorrect.color_correct(
+    corrected_image = numpy.clip(images.ColorCorrect.color_correct(
         image, images.SpyderCHECKR24.colour_checker, method='Finlayson 2015'), 0.0, 1.0)
 
     # cctf encodes color corrected image (now the image is in imageio format)
-    image = colour.cctf_encoding(image, function='sRGB')
-    image = imutils.resize(image, height=800)
+    final_image = colour.cctf_encoding(corrected_image, function='sRGB')
+    final_image = imutils.resize(final_image, height=800)
 
     # define the output image filename (can take this out if we don't want to save the image)
     # output_filename = os.path.join(
@@ -46,7 +46,7 @@ def process(file):
 
     # converts our imageio format image to byte array as an intermediary
     img_byte_arr = io.BytesIO()
-    imageio.imwrite(img_byte_arr, image, format='jpg')
+    imageio.imwrite(img_byte_arr, final_image, format='jpg')
 
     # converts our byte array image to numpy format because cv2 uses numpy images
     img_byte_arr = img_byte_arr.getvalue()
