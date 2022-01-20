@@ -26,7 +26,7 @@ If run locally, they must both be spun up separately, using the instructions pro
 
 ## Site Link
 
-The currently hosted development version of Sludge Snap can be found [here](#).
+The currently hosted development version of Sludge Snap can be found [here](https://sludge-snap-web-app.vercel.app/).
 
 ## Usage <!-- What do I call this? -->
 
