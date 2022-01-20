@@ -96,6 +96,18 @@ then cd into the virtual environment directory
 cd venv
 ```
 
+set environment variables
+
+```
+export FLASK_APP=index.py
+```
+
+set environment to development
+
+```
+export FLASK_ENV=development
+```
+
 finally, spin up the local server using
 
 ```
