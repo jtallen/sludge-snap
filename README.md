@@ -1,28 +1,26 @@
 # Sludge Snap
 
+⇒ [Live Site](https://sludge-snap-web-app.vercel.app/)
+
 Sludge Snap is a mobile-first web app that uses realtime image recognition and machine learning in order to provide characterizations for sludge samples collected in the field by sanitation workers.
 
 Developed for the Swiss Federal Institute of Aquatic Science and Technology ([eawag](https://www.eawag.ch/en/) for short).
 
-## Collaborators
-
-This app was developed by Turner Allen with help from Devin Sivick, Kimberley Yu, Brandon Sun, and Andres Escamilla. It was built in collaboration with and from specifications provided by the eawag.
-
 ## File Structure
 
-This app is divided between two subdirectories. One folder containing the React front end and Node back end, and one folder containing the Python back end.
+This app is divided between two subdirectories. One folder containing the React front end and Node back end, and one folder containing the Python back end. I chose this separation in order to facilitate tailored provisioning for each service, since the resources required for each are significantly different.
 
 If run locally, they must both be spun up separately, using the instructions provided at the bottom of this README.
 
 ## Tech Stack
 
-- React front end using a [NextJS](https://nextjs.org/) framework.
+- React front end using the [NextJS](https://nextjs.org/) framework.
 - [Tailwind CSS](https://tailwindcss.com/) for styling.
-- [Node](https://nodejs.org/en/about/) back end for UI and control logic.
-- Python with a [Flask](https://flask.palletsprojects.com/en/2.0.x/#) API for image recognition and machine learning.
-- [Vercel](https://vercel.com/) used for deployment and various CD/CI features.
-- [Hasura](https://hasura.io/) used for database hosting, using a [GraphQL](https://graphql.org/) API.
-- [Auth0](https://auth0.com/) used for third-party Authorization.
+- Serverless [Node](https://nodejs.org/en/about/) back end for control logic.
+- Separate Python + [Flask](https://flask.palletsprojects.com/en/2.0.x/#) API to run image recognition and machine learning model.
+- [Vercel](https://vercel.com/) for deployment and various CD/CI features.
+- [Hasura](https://hasura.io/) for database hosting and [GraphQL](https://graphql.org/) API.
+- [Auth0](https://auth0.com/) for third-party Authorization.
 
 ## Site Link
 
@@ -103,3 +101,11 @@ finally, spin up the local server using
 ```
 flask run
 ```
+
+## Collaborators
+
+This app was developed by Turner Allen with support from Devin Sivick, Kimberley Yu, Brandon Sun, and Andres Escamilla. It was built in collaboration with and from specifications provided by the eawag.
+
+## Questions
+
+This project is no longer under active development. If you have any questions, please feel free to reach out to me at jturnerallen at gmail. Thanks!
