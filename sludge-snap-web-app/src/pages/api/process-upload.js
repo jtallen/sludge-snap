@@ -9,8 +9,9 @@ import requests from '../../util/requests';
  */
 
 export default async function processUpload(req, res) {
-    console.log('\n\n\nOne\n\n\n');
     const uploadInput = JSON.parse(req.body);
+
+    // non-await async chain for future reference, equivalent to below
 
     // const postCBFcn = (response) => {
     //     const jsonPromiseWrappingParsingOfTheJSONString = response.json();
@@ -54,7 +55,6 @@ export default async function processUpload(req, res) {
         body: JSON.stringify(uploadInput),
     });
     const { upload } = await uploadResponse.json();
-    // console.log("\n\n\t\tCalled '/api/create-upload'");
 
     // call to python server to run model and return analysis
     const analysisResponse = await requests.post('/api/run-model', {
@@ -75,7 +75,6 @@ export default async function processUpload(req, res) {
         }
     );
     const { uploadAnalysis } = await uploadAnalysisResponse.json();
-    // console.log("\n\n\t\tCalled '/api/create-upload-analysis'");
 
     res.status(200).json({ uploadAnalysis });
 }

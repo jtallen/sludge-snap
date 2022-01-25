@@ -46,5 +46,4 @@ def fake_process(input_data):
     return STUB_DATA_2
 
 def process(input_data):
-    print('\n\n\nSix\n\n\n')
     return fake_process(input_data)

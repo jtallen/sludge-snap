@@ -8,8 +8,6 @@ app = Flask(__name__)
 
 @app.route('/run-model', methods=['POST'])
 def run_model():
-    print('\n\n\nFive\n\n\n')
-
 
     input_data = request.json
 

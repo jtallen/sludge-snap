@@ -77,8 +77,6 @@ async function createUpload(req, res) {
 
     const query = buildQuery(variables);
 
-    console.log('\n\n\nThree\n\n\n');
-
     const data = await hasuraRequest({
         query,
         variables,

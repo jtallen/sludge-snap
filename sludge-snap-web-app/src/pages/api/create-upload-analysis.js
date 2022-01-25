@@ -34,15 +34,18 @@ export const UPLOAD_ANALYSIS_GQL_DEFINITION = `
     }
 `;
 
-async function createUploadAnalysis(req, res) {
-    console.log('\n\n\nEight\n\n\n');
+/*
+ * This function uploads the model's predicted characteristics in an analysis object
+ * to the analyses table of the database
+ *
+ * It returns an analysis object with its corresponding upload added to a .upload property
+ *
+ */
 
-    // console.log({ req, res });
+async function createUploadAnalysis(req, res) {
     const { analysis: analysisString, upload } = JSON.parse(req.body);
 
     const analysis = JSON.parse(analysisString);
-
-    // console.log({ analysisString });
 
     const variables = {
         upload_id: upload.id,
