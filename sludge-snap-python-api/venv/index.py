@@ -8,14 +8,27 @@ app = Flask(__name__)
 
 @app.route('/run-model', methods=['POST'])
 def run_model():
+    print('\n\n\nFive\n\n\n')
+
+
     input_data = request.json
 
-    # return an error reponse here from flask if error happens on 
-    # look up how to return error from flask api
-    processed_input_data = images.process_upload.run(input_data)
+    # run image processing
+    # processed_input_data = images.process_upload.run(input_data)
     
-    # print(processed_input_data)
-    json_transit = json.dumps(processed_input_data)
-    output_data = machine_learning.test_main.main(json_transit)
-    # print(output_data)
+    # json_transit = json.dumps(processed_input_data)
+
+    # run model
+    # output_data = machine_learning.test_main.main(json_transit)
+
+    # using stubbed data for public site display
+    output_data = json.dumps(model.process(input_data))
+
+
+    print("Output data:")
+    print(output_data)
+    
     return jsonify(output_data)
+
+
+# make a new one for the model

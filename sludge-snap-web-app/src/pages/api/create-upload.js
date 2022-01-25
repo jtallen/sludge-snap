@@ -41,6 +41,8 @@ export const UPLOAD_GQL_DEFINITION = `
 `;
 
 async function createUpload(req, res) {
+    console.log('\n\n\nTwo\n\n\n');
+
     const {
         title,
         ph,
@@ -74,6 +76,8 @@ async function createUpload(req, res) {
     };
 
     const query = buildQuery(variables);
+
+    console.log('\n\n\nThree\n\n\n');
 
     const data = await hasuraRequest({
         query,

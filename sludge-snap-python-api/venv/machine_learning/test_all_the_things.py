@@ -26,8 +26,8 @@ def test_all_the_things(data,
             features = res
 
     # Predict output based on given features.
-    print("Post-Encoding Data:")
-    print(features)
+    # print("Post-Encoding Data:")
+    # print(features)
     y = model.predict(features)
     output = y[0]
 

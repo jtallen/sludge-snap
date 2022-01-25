@@ -24,7 +24,7 @@ class UploadAnalysesIndexPage extends React.Component {
             .get(`/api/upload-analyses?email=${this.props.user.email}`) // Super insecure - fix after demo
             .then((res) => res.json())
             .then(({ uploadAnalyses }) => {
-                console.log({ uploadAnalyses });
+                // console.log({ uploadAnalyses });
                 this.setState({ uploadAnalyses, loading: false });
             });
     }

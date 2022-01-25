@@ -1,12 +1,6 @@
 const { hasuraRequest } = require('../../util/hasura');
 import { UPLOAD_GQL_DEFINITION } from './create-upload';
 
-/*
-    This workaround is necessary because of how Hasura handles empty GQL field values
-    that are non-nullable + default at the DB level: Instead of just using the default
-    value, as expected, the API throws an error.
-    TODO: Figure out a cleaner way to do this.
-*/
 const GQL_DEFINITIONS = {
     upload_id: 'Int!',
     cst: 'numeric = -1',
@@ -41,9 +35,14 @@ export const UPLOAD_ANALYSIS_GQL_DEFINITION = `
 `;
 
 async function createUploadAnalysis(req, res) {
+    console.log('\n\n\nEight\n\n\n');
+
+    // console.log({ req, res });
     const { analysis: analysisString, upload } = JSON.parse(req.body);
 
     const analysis = JSON.parse(analysisString);
+
+    // console.log({ analysisString });
 
     const variables = {
         upload_id: upload.id,

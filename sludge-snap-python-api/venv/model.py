@@ -1,49 +1,50 @@
 STUB_DATA_0 = {
-    'cst': '345.5',
-    'turbidity': '167',
-    'ts_dew': '25.91',
-    'cod': '51.2',
-    'nh4': '0.2',
-    'ts': '1.35',
-    'vs': '56.46',
-    'toc': '10.10695187',
-    'tkn': '1.071',
-    'density': '.419887',
+    'CST': '345.5',
+    'Turb': '167',
+    'TSdew': '25.91',
+    'COD': '51.2',
+    'NH4': '0.2',
+    'TS': '1.35',
+    'VS': '56.46',
+    'TOC': '10.10695187',
+    'TKN': '1.071',
+    'Density': '.419887',
 }
 
 STUB_DATA_1 = {
-    'cst': '123.4',
-    'turbidity': '110',
-    'ts_dew': '15.78',
-    'cod': '129.1',
-    'nh4': '0.8',
-    'ts': '13.79',
-    'vs': '57.68',
-    'toc': '15.72192513',
-    'tkn': '1.33',
-    'density': '1.0545',
+    'CST': '123.4',
+    'Turb': '110',
+    'TSdew': '15.78',
+    'COD': '129.1',
+    'NH4': '0.8',
+    'TS': '13.79',
+    'VS': '57.68',
+    'TOC': '15.72192513',
+    'TKN': '1.33',
+    'Density': '1.0545',
 }
 
 STUB_DATA_2 = {
-    'cst': '262.4',
-    'turbidity': '1027',
-    'ts_dew': '14.8',
-    'cod': '132.3',
-    'nh4': '0.4',
-    'ts': '18.51',
-    'vs': '88.7',
-    'toc': '8.556149733',
-    'tkn': '1.83',
-    'density': '1.1515',
+    'CST': '262.4',
+    'Turb': '1027',
+    'TSdew': '14.8',
+    'COD': '132.3',
+    'NH4': '0.4',
+    'TS': '18.51',
+    'VS': '88.7',
+    'TOC': '8.556149733',
+    'TKN': '1.83',
+    'Density': '1.1515',
 }
 
 def fake_process(input_data):
-    if input_data['pH'] == 5:
+    if input_data['ph'] == 5:
         return STUB_DATA_0
-    elif input_data['pH'] == 6:
+    elif input_data['ph'] == 6:
         return STUB_DATA_1
 
     return STUB_DATA_2
 
 def process(input_data):
+    print('\n\n\nSix\n\n\n')
     return fake_process(input_data)

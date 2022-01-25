@@ -8,6 +8,7 @@ const TOILET_TYPE_OPTIONS = ['', 'Wet', 'Dry'];
 const SOURCE_OPTIONS = ['', 'Household', 'Non-household'];
 
 // Odor must be capitalized, color must be lower case
+// UPDATE: no longer true (TODO: test)
 const ODOR_OPTIONS = ['', 'Fresh', 'Middle', 'Stabilized'];
 const COLOR_OPTIONS = ['', 'Fresh', 'Middle', 'Stabilized'];
 
@@ -70,7 +71,7 @@ export default class UploadForm extends React.Component {
                 role="alert"
             >
                 <p className="font-bold">You are not logged in.</p>
-                <p class="text-sm">
+                <p className="text-sm">
                     If you wish to save your data, please&nbsp;
                     <Link href="/api/auth/login">
                         <a className=" underline">log in.</a>
@@ -124,7 +125,9 @@ export default class UploadForm extends React.Component {
     _renderECInput() {
         return (
             <label className="block mb-4">
-                <span className="text-gray-700">Electrical Conductivity</span>
+                <span className="text-gray-700">
+                    Electrical Conductivity (mS/cm)
+                </span>
                 <input
                     type="number"
                     className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
@@ -138,7 +141,7 @@ export default class UploadForm extends React.Component {
     _renderFoamHeightInput() {
         return (
             <label className="block mb-4">
-                <span className="text-gray-700">Foam Height</span>
+                <span className="text-gray-700">Foam Height (mm)</span>
                 <input
                     type="number"
                     className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
@@ -363,7 +366,7 @@ export default class UploadForm extends React.Component {
 
     // convert front-end/display keys and values to back-end keys and values
     _getFormData() {
-        console.log('_getFormData(): ' + this.state);
+        // console.log('_getFormData(): ' + this.state);
         return {
             title: this.state.title,
             notes: this.state.notes,

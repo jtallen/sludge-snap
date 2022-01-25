@@ -1,7 +1,7 @@
 class Requests {
     constructor({ host }) {
         this._host = host;
-        console.log(host);
+        // console.log(host);
     }
 
     get(url, config = {}) {
@@ -9,6 +9,7 @@ class Requests {
     }
 
     post(url, config = {}) {
+        // console.log({ url, config });
         return fetch(this._absoluteURL(url), {
             method: 'POST',
             ...config,

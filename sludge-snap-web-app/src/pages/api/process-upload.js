@@ -9,19 +9,60 @@ import requests from '../../util/requests';
  */
 
 export default async function processUpload(req, res) {
+    console.log('\n\n\nOne\n\n\n');
     const uploadInput = JSON.parse(req.body);
+
+    // const postCBFcn = (response) => {
+    //     const jsonPromiseWrappingParsingOfTheJSONString = response.json();
+    //     return jsonPromiseWrappingParsingOfTheJSONString;
+    // };
+
+    // requests
+    //     .post('/api/create-upload', {})
+    //     .then(postCBFcn)
+    //     .then((literallyTheJSONStringValueFromTheResolvedPromise) => {
+    //         upload = json.upload;
+
+    //         requests
+    //             .post('/api/run-model', {
+    //                 body: JSON.stringify(upload),
+    //             })
+    //             .then((response) => {
+    //                 const json = response.json();
+    //                 return json;
+    //             })
+    //             .then((json) => {
+    //                 analysis = json.analysis;
+
+    //                 requests
+    //                     .post('/api/create-upload-analysis', {
+    //                         body: JSON.stringify({ analysis, upload }),
+    //                     })
+    //                     .then((response) => {
+    //                         const json = response.json();
+    //                         return json;
+    //                     })
+    //                     .then((json) => {
+    //                         const uploadAnalysis = json.uploadAnalysis;
+    //                         return res.status(200).json({ uploadAnalysis });
+    //                     });
+    //             });
+    //     });
 
     // API call to store upload information on db
     const uploadResponse = await requests.post('/api/create-upload', {
         body: JSON.stringify(uploadInput),
     });
     const { upload } = await uploadResponse.json();
-    console.log("\n\n\t\tCalled '/api/create-upload'");
+    // console.log("\n\n\t\tCalled '/api/create-upload'");
 
     // call to python server to run model and return analysis
     const analysisResponse = await requests.post('/api/run-model', {
         body: JSON.stringify(upload),
     });
+
+    // creates a variable analysis with value equal to the property 'analysis' of the object
+    // that gets returned from the promise on the right side of the assignment
     const { analysis } = await analysisResponse.json();
 
     // add: function to check what comes from the server and make it db-friendly
@@ -34,7 +75,7 @@ export default async function processUpload(req, res) {
         }
     );
     const { uploadAnalysis } = await uploadAnalysisResponse.json();
-    console.log("\n\n\t\tCalled '/api/create-upload-analysis'");
+    // console.log("\n\n\t\tCalled '/api/create-upload-analysis'");
 
     res.status(200).json({ uploadAnalysis });
 }

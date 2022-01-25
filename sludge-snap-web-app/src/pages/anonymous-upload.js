@@ -11,24 +11,41 @@ export default function AnonymousUpload() {
     const [analysis, setAnalysis] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const onSubmit = (form) => {
+    const onSubmit = async (form) => {
         const { image, ...formData } = form;
         const body = JSON.stringify({ ...form });
-        console.log({ body });
+        // console.log({ body });
         setLoading(true);
-        requests
-            .post('/api/run-model', {
-                body,
-            })
-            .then((response) => {
-                return response.json();
-            })
-            .then(({ analysis }) => {
-                // console.log(analysis);
-                setLoading(false);
-                setAnalysis(analysis);
-                window.scrollTo(0, 0);
-            });
+        // console.log({ body });
+
+        const analysisResponse = await requests.post('/api/run-model', {
+            body,
+        });
+
+        const { analysis: analysisString } = await analysisResponse.json();
+
+        const oldAnalysis = JSON.parse(analysisString);
+
+        // hacky way of swapping property names
+        // TODO: move into mapping function
+        const analysis = {
+            cod: Number(oldAnalysis.COD),
+            cst: Number(oldAnalysis.CST),
+            density: Number(oldAnalysis.Density),
+            nh4: Number(oldAnalysis.NH4),
+            tkn: Number(oldAnalysis.TKN),
+            toc: Number(oldAnalysis.TOC),
+            ts: Number(oldAnalysis.TS),
+            ts_dew: Number(oldAnalysis.TSdew),
+            turbidity: Number(oldAnalysis.Turb),
+            vs: Number(oldAnalysis.VS),
+        };
+
+        analysis.upload = form;
+
+        setLoading(false);
+        setAnalysis(analysis);
+        window.scrollTo(0, 0);
     };
 
     if (analysis) {

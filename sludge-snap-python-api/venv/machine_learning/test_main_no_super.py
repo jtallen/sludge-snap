@@ -69,8 +69,8 @@ def test_main_no_super(input):
         # Test the data.
         feature_list = flatten(features)
 
-        print(type(feature_list))
-        print(feature_list)
+        # print(type(feature_list))
+        # print(feature_list)
         # Run testing function
         result = analyze(feature_list)
         # Combine dictionaries to results

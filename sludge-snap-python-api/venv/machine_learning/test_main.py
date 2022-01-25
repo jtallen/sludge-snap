@@ -32,8 +32,8 @@ def main(input_json):
 
     # this setting makes printing pandas dataframes more readable
     pd.set_option("display.max_rows", None, "display.max_columns", None)
-    print("Pandas Dataframe")
-    print(input)
+    # print("Pandas Dataframe")
+    # print(input)
 
     # Calls the two tester functions
     # withSuperResult = test_main_with_super(input)

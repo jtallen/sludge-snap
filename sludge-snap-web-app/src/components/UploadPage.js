@@ -55,7 +55,7 @@ export default function UploadPage(props) {
         );
     }
 
-    console.log(user);
+    // console.log(user);
 
     // callback for pressing "submit" on upload form
     // processes upload: posts inputs to db, runs ml model, posts analysis to db, returns db analysis id
@@ -68,6 +68,8 @@ export default function UploadPage(props) {
             })
             .then((response) => response.json())
             .then(({ uploadAnalysis }) => {
+                console.log('\n\n\nNine\n\n\n');
+
                 setLoading(false);
                 router.push(`/upload-analyses/${uploadAnalysis.id}`);
             });

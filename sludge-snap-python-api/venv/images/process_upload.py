@@ -19,15 +19,15 @@ def run(upload):
     # print(upload)
 
 
-    print("Image output:")
-    print(image_output)
+    # print("Image output:")
+    # print(image_output)
     output = upload | image_output
 
     # remove image from output
     del output["image"]
 
-    print("Full output:")
-    print(output)
+    # print("Full output:")
+    # print(output)
 
     return output
 

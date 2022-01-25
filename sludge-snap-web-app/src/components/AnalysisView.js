@@ -15,6 +15,24 @@ const TEXT_FIELD_NAMES = [
     'density',
 ];
 
+// potentially move this to consts file
+// TODO: Add units for invalid fields
+const TEXT_FIELD_UNITS = {
+    COD: 'g/L',
+    'NH4-N': 'g/L',
+    TS: '% dry solids',
+    VS: '% of total solids',
+};
+
+const TEXT_FIELD_PROPER_NAMES = {
+    cod: 'COD',
+    nh4: 'NH4-N',
+    ts: 'TS',
+    vs: 'VS',
+    toc: 'TOC',
+    tkn: 'TKN',
+};
+
 const IMAGE_FIELD_NAME = 'image';
 
 export default class AnalysisView extends React.Component {
@@ -26,7 +44,7 @@ export default class AnalysisView extends React.Component {
                 {this._renderSubheader('Uploaded Image')}
                 {this._renderImage()}
                 {this._renderSeparator()}
-                {this._renderSubheader('Analysis Results')}
+                {this._renderSubheader('Predicted Characteristics')}
                 {this._renderAnalysis()}
                 {this._renderSeparator()}
                 {this._renderUploadNewButton()}
@@ -55,9 +73,10 @@ export default class AnalysisView extends React.Component {
     }
 
     _renderImage() {
+        if (!this.props.analysis.upload) return;
         const image = this.props.analysis.upload[IMAGE_FIELD_NAME];
         if (!image) return;
-        console.log(image);
+        // console.log(image);
 
         return (
             <div className="shadow-lg ring-1 ring-black ring-opacity-5 rounded mx-4">
@@ -75,14 +94,18 @@ export default class AnalysisView extends React.Component {
     }
 
     _renderTextField = (name, i) => {
-        const bgColor = i % 2 == 0 ? 'bg-gray-50' : 'bg-white'; // Zebra stripes
+        const bgColor = (i + 1) % 2 == 0 ? 'bg-gray-50' : 'bg-white'; // Zebra stripes
         const label = this._formatLabel(name);
+
+        // strip invalid values
+        if (this.props.analysis[name] == -1) return;
 
         return (
             <div className={`${bgColor} px-4 py-2 grid grid-cols-3 gap-4`}>
                 <dt className="text-sm font-medium text-gray-600">{label}</dt>
                 <dd className="text-sm mt-1 col-span-2">
-                    {this.props.analysis[name]}
+                    {Math.round(this.props.analysis[name] * 100) / 100}{' '}
+                    {TEXT_FIELD_UNITS[label]}
                 </dd>
             </div>
         );
@@ -99,12 +122,13 @@ export default class AnalysisView extends React.Component {
     // helpers
 
     _formatLabel(name) {
-        return name
-            .replace('_', ' ')
-            .replace(
-                /\b\w+/g,
-                (txt) =>
-                    txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-            );
+        if (TEXT_FIELD_PROPER_NAMES[name] != null)
+            return TEXT_FIELD_PROPER_NAMES[name];
+        return name.replace('_', ' ');
+        // .replace(
+        //     /\b\w+/g,
+        //     (txt) =>
+        //         txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+        // );
     }
 }

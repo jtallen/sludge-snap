@@ -4,6 +4,8 @@ import AnalysisView from './AnalysisView';
 import requests from '../util/requests';
 import Loader from './Loader';
 
+// This component displays the uploaded analysis
+
 class UploadAnalysisPage extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +22,7 @@ class UploadAnalysisPage extends React.Component {
             .get(`/api/upload-analyses/${this.props.id}`)
             .then((res) => res.json())
             .then(({ uploadAnalysis }) => {
-                console.log({ uploadAnalysis });
+                // console.log({ uploadAnalysis });
                 this.setState({ uploadAnalysis, loading: false });
             });
     }

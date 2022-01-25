@@ -24,7 +24,7 @@ export default function Upload() {
         );
     }
 
-    console.log(user);
+    // console.log(user);
 
     const onSubmit = (formData) =>
         requests
@@ -38,11 +38,11 @@ export default function Upload() {
                 // router.push('/');
             })
             .then((upload) => {
-                console.log(upload);
+                // console.log(upload);
                 return requests.get('/api/analyze');
             })
             .then((data) => {
-                console.log(data);
+                // console.log(data);
             });
 
     return (
