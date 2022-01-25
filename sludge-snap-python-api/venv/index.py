@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
-import images.process_upload
+# import images.process_upload
 import model
-import machine_learning.test_main
+# import machine_learning.test_main
 import json
 
 app = Flask(__name__)
