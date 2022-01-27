@@ -1,6 +1,6 @@
 # Sludge Snap
 
-⇒ [Live Site](https://sludge-snap-web-app.vercel.app/)
+⇒ <a href="https://sludge-snap-web-app.vercel.app/" target="_blank">Live Site</a>
 
 Sludge Snap is a mobile-first web app that uses realtime image recognition and machine learning in order to provide characterizations for sludge samples collected in the field by sanitation workers.
 
